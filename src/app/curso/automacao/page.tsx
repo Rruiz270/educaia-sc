@@ -148,7 +148,7 @@ export default function CursoAutomacao() {
               <ProjectCard
                 title="📧 Sistema de Comunicação Automatizado"
                 description="Envie updates personalizados para pais sobre o progresso dos alunos"
-                tools={["Make", "Gmail", "Google Sheets"]
+                tools={["Make", "Gmail", "Google Sheets"]}
                 difficulty="Iniciante"
                 time="2 horas"
               />
@@ -156,7 +156,7 @@ export default function CursoAutomacao() {
               <ProjectCard
                 title="📱 App de Quiz Gamificado"
                 description="Crie um app mobile com quiz, ranking e badges para sua turma"
-                tools={["Glide", "Google Sheets", "Canva"]
+                tools={["Glide", "Google Sheets", "Canva"]}
                 difficulty="Intermediário"
                 time="4 horas"
               />
@@ -164,7 +164,7 @@ export default function CursoAutomacao() {
               <ProjectCard
                 title="🎓 Portal do Aluno Completo"
                 description="Site com login, materiais, notas e comunicados"
-                tools={["Softr", "Airtable", "Stripe"]
+                tools={["Softr", "Airtable", "Stripe"]}
                 difficulty="Avançado"
                 time="8 horas"
               />
@@ -172,7 +172,7 @@ export default function CursoAutomacao() {
               <ProjectCard
                 title="📊 Dashboard de Frequência"
                 description="Visualize e analise padrões de presença automaticamente"
-                tools={["Looker Studio", "Google Forms", "Sheets"]
+                tools={["Looker Studio", "Google Forms", "Sheets"]}
                 difficulty="Iniciante"
                 time="3 horas"
               />
@@ -180,7 +180,7 @@ export default function CursoAutomacao() {
               <ProjectCard
                 title="🤖 Assistente Virtual 24/7"
                 description="Chatbot que responde dúvidas frequentes dos alunos"
-                tools={["Bubble", "ChatGPT API", "Zapier"]
+                tools={["Bubble", "ChatGPT API", "Zapier"]}
                 difficulty="Avançado"
                 time="6 horas"
               />
@@ -188,7 +188,7 @@ export default function CursoAutomacao() {
               <ProjectCard
                 title="📝 Corretor de Redações"
                 description="Sistema que analisa e dá feedback em redações automaticamente"
-                tools={["Make", "Claude API", "Google Docs"]
+                tools={["Make", "Claude API", "Google Docs"]}
                 difficulty="Intermediário"
                 time="5 horas"
               />
