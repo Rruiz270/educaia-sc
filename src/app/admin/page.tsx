@@ -168,7 +168,7 @@ export default function Admin() {
                   >
                     <option value="">Todas as cidades</option>
                     {Object.keys(estatisticas.porCidade).map(c => (
-                      <option key={c} value={c}>{c} ({estatisticas.porCidade[c]})</option>
+                      <option key={c} value={c}>{c} ({estatisticas.porCidade[c] as number})</option>
                     ))}
                   </select>
                 </div>
@@ -234,7 +234,7 @@ export default function Admin() {
                               style={{ width: `${((count as number) / estatisticas.total) * 100}%` }}
                             ></div>
                           </div>
-                          <span className="text-sm font-medium">{count}</span>
+                          <span className="text-sm font-medium">{count as number}</span>
                         </div>
                       </div>
                     ))}
@@ -258,7 +258,7 @@ export default function Admin() {
                               style={{ width: `${((count as number) / estatisticas.total) * 100}%` }}
                             ></div>
                           </div>
-                          <span className="text-sm font-medium">{count}</span>
+                          <span className="text-sm font-medium">{count as number}</span>
                         </div>
                       </div>
                     ))}
@@ -273,7 +273,7 @@ export default function Admin() {
                     <div key={exp} className="flex justify-between items-center">
                       <span className="text-gray-700 text-sm">{exp}</span>
                       <span className="text-sm font-medium bg-purple-100 text-purple-800 px-2 py-1 rounded">
-                        {count}
+                        {count as number}
                       </span>
                     </div>
                   ))}
