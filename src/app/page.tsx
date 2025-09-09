@@ -1,31 +1,36 @@
+import Navbar from '@/components/Navbar'
+import Link from 'next/link'
+
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center gradient-sc text-white">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
-              EducaIA-SC
-            </h1>
-            <p className="text-2xl md:text-3xl mb-8 opacity-90">
-              Transformando a Educação de Santa Catarina com Inteligência Artificial
-            </p>
-            <p className="text-lg md:text-xl mb-12 max-w-3xl mx-auto">
-              Capacitação em IA para 10.000 professores da rede pública. 
-              Preparando educadores e alunos para o futuro.
-            </p>
-            <div className="space-x-4">
-              <button className="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition">
-                Começar Agora
-              </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-blue-600 transition">
-                Saiba Mais
-              </button>
+    <>
+      <Navbar />
+      <main className="min-h-screen pt-16">
+        {/* Hero Section */}
+        <section className="relative min-h-screen flex items-center justify-center gradient-sc text-white">
+          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="text-center">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+                EducaIA-SC
+              </h1>
+              <p className="text-2xl md:text-3xl mb-8 opacity-90">
+                Transformando a Educação de Santa Catarina com Inteligência Artificial
+              </p>
+              <p className="text-lg md:text-xl mb-12 max-w-3xl mx-auto">
+                Capacitação em IA para 10.000 professores da rede pública. 
+                Preparando educadores e alunos para o futuro.
+              </p>
+              <div className="space-x-4">
+                <Link href="/cadastro" className="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition inline-block">
+                  Começar Agora
+                </Link>
+                <Link href="/curso" className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-blue-600 transition inline-block">
+                  Saiba Mais
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
         
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
@@ -116,12 +121,13 @@ export default function Home() {
             Junte-se a nós nesta jornada de inovação educacional. 
             Vamos preparar nossos alunos para o futuro, juntos!
           </p>
-          <button className="bg-white text-blue-600 px-12 py-5 rounded-full font-semibold text-xl hover:bg-gray-100 transition">
+          <Link href="/cadastro" className="bg-white text-blue-600 px-12 py-5 rounded-full font-semibold text-xl hover:bg-gray-100 transition inline-block">
             Inscreva-se Agora
-          </button>
+          </Link>
         </div>
       </section>
     </main>
+    </>
   );
 }
 
