@@ -16,12 +16,15 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             <Link href="/curso" className="text-gray-700 hover:text-blue-600 font-medium transition">
               O Curso
             </Link>
             <Link href="/disciplinas" className="text-gray-700 hover:text-blue-600 font-medium transition">
               Disciplinas
+            </Link>
+            <Link href="/recursos" className="text-gray-700 hover:text-blue-600 font-medium transition">
+              Recursos IA
             </Link>
             <Link href="/comunidade" className="text-gray-700 hover:text-blue-600 font-medium transition">
               Comunidade
@@ -65,6 +68,9 @@ export default function Navbar() {
               </Link>
               <Link href="/disciplinas" className="block px-3 py-2 text-gray-700 hover:text-blue-600">
                 Disciplinas
+              </Link>
+              <Link href="/recursos" className="block px-3 py-2 text-gray-700 hover:text-blue-600">
+                Recursos IA
               </Link>
               <Link href="/comunidade" className="block px-3 py-2 text-gray-700 hover:text-blue-600">
                 Comunidade
