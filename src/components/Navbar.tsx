@@ -11,8 +11,17 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center space-x-3">
             <span className="text-2xl font-bold text-gradient">EducaIA-SC</span>
+            <div className="border-l border-gray-300 h-8"></div>
+            <div className="flex items-center space-x-2">
+              <img 
+                src="/alumni-logo.svg" 
+                alt="Alumni by Better" 
+                className="h-6 w-auto opacity-70"
+              />
+              <span className="text-sm text-gray-600 font-medium">powered by Alumni</span>
+            </div>
           </Link>
 
           {/* Desktop Menu */}
