@@ -12,8 +12,42 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Aqui implementaríamos a lógica de login
-    // Por enquanto, redireciona para o dashboard
+    
+    // Sistema de login demo - qualquer email/senha funciona
+    if (formData.email && formData.senha) {
+      // Salvar dados do usuário no localStorage para demo
+      localStorage.setItem('user', JSON.stringify({
+        email: formData.email,
+        nome: formData.email.split('@')[0],
+        loginDate: new Date().toISOString()
+      }))
+      
+      // Redirecionar para dashboard
+      window.location.href = '/dashboard'
+    } else {
+      alert('Por favor, preencha email e senha para acessar o dashboard demo.')
+    }
+  }
+
+  const handleGoogleLogin = () => {
+    // Simular login com Google
+    localStorage.setItem('user', JSON.stringify({
+      email: 'professor@escola.sc.gov.br',
+      nome: 'Professor Demo',
+      loginDate: new Date().toISOString(),
+      provider: 'google'
+    }))
+    window.location.href = '/dashboard'
+  }
+
+  const handleFacebookLogin = () => {
+    // Simular login com Facebook
+    localStorage.setItem('user', JSON.stringify({
+      email: 'professor@facebook.com',
+      nome: 'Professor Facebook',
+      loginDate: new Date().toISOString(),
+      provider: 'facebook'
+    }))
     window.location.href = '/dashboard'
   }
 
@@ -104,7 +138,11 @@ export default function Login() {
 
             {/* Social Login */}
             <div className="space-y-3">
-              <button className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+              <button 
+                type="button"
+                onClick={handleGoogleLogin}
+                className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+              >
                 <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
                   <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                   <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -114,7 +152,11 @@ export default function Login() {
                 Entrar com Google
               </button>
 
-              <button className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+              <button 
+                type="button"
+                onClick={handleFacebookLogin}
+                className="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+              >
                 <svg className="w-5 h-5 mr-3" fill="#1877F2" viewBox="0 0 24 24">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                 </svg>
@@ -137,10 +179,12 @@ export default function Login() {
           <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
             <div className="text-center">
               <p className="text-sm text-blue-800 font-medium mb-2">
-                🎯 Para testar o dashboard
+                🎯 Para testar o sistema (DEMO)
               </p>
               <p className="text-sm text-blue-700">
-                Clique em "Entrar" com qualquer email/senha
+                Email: demo@escola.sc.gov.br<br/>
+                Senha: qualquer senha<br/>
+                <strong>OU</strong> clique nos botões sociais
               </p>
             </div>
           </div>

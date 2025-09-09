@@ -16,8 +16,52 @@ export default function Cadastro() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Aqui implementaríamos a lógica de cadastro
-    alert('Cadastro realizado com sucesso! Em breve você receberá as instruções por email.')
+    
+    // Validação básica
+    if (!formData.nome || !formData.email || !formData.escola || !formData.cidade || !formData.disciplina) {
+      alert('Por favor, preencha todos os campos obrigatórios.')
+      return
+    }
+    
+    // Salvar dados no localStorage (sistema demo)
+    const cadastroData = {
+      ...formData,
+      id: Date.now().toString(),
+      dataCadastro: new Date().toISOString(),
+      status: 'ativo'
+    }
+    
+    // Recuperar cadastros existentes
+    const cadastrosExistentes = JSON.parse(localStorage.getItem('cadastros') || '[]')
+    
+    // Verificar se email já existe
+    const emailExiste = cadastrosExistentes.find((c: any) => c.email === formData.email)
+    
+    if (emailExiste) {
+      alert('Este email já está cadastrado! Faça login para acessar sua conta.')
+      return
+    }
+    
+    // Adicionar novo cadastro
+    cadastrosExistentes.push(cadastroData)
+    localStorage.setItem('cadastros', JSON.stringify(cadastrosExistentes))
+    
+    // Salvar dados do usuário para login automático
+    localStorage.setItem('user', JSON.stringify({
+      email: formData.email,
+      nome: formData.nome,
+      escola: formData.escola,
+      cidade: formData.cidade,
+      disciplina: formData.disciplina,
+      loginDate: new Date().toISOString()
+    }))
+    
+    alert('🎉 Cadastro realizado com sucesso!\n\nVocê será redirecionado para o dashboard.\n\nEm um sistema real, você receberia um email de confirmação.')
+    
+    // Redirecionar para dashboard
+    setTimeout(() => {
+      window.location.href = '/dashboard'
+    }, 2000)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
