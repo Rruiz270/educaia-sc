@@ -14,11 +14,18 @@ export default function Navbar() {
           <Link href="/" className="flex items-center space-x-3">
             <span className="text-2xl font-bold text-gradient">EducaIA-SC</span>
             <div className="border-l border-gray-300 h-8"></div>
-            <img 
-              src="/alumni-logo.svg" 
-              alt="Alumni by Better" 
-              className="h-6 w-auto opacity-70"
-            />
+            <a 
+              href="https://alumni.org.br" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:opacity-100 transition-opacity"
+            >
+              <img 
+                src="/alumni-logo.svg" 
+                alt="Alumni by Better" 
+                className="h-6 w-auto opacity-70 hover:opacity-90 transition-opacity"
+              />
+            </a>
           </Link>
 
           {/* Desktop Menu */}
