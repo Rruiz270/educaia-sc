@@ -14,14 +14,11 @@ export default function Navbar() {
           <Link href="/" className="flex items-center space-x-3">
             <span className="text-2xl font-bold text-gradient">EducaIA-SC</span>
             <div className="border-l border-gray-300 h-8"></div>
-            <div className="flex items-center space-x-2">
-              <img 
-                src="/alumni-logo.svg" 
-                alt="Alumni by Better" 
-                className="h-6 w-auto opacity-70"
-              />
-              <span className="text-sm text-gray-600 font-medium">powered by Alumni</span>
-            </div>
+            <img 
+              src="/alumni-logo.svg" 
+              alt="Alumni by Better" 
+              className="h-6 w-auto opacity-70"
+            />
           </Link>
 
           {/* Desktop Menu */}
