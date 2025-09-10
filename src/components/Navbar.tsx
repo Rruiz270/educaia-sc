@@ -35,11 +35,17 @@ export default function Navbar() {
             <Link href="/recursos" className="text-gray-700 hover:text-blue-600 font-medium transition">
               Recursos IA
             </Link>
+            <Link href="/projetos" className="text-gray-700 hover:text-blue-600 font-medium transition">
+              Meus Projetos
+            </Link>
             <Link href="/comunidade" className="text-gray-700 hover:text-blue-600 font-medium transition">
               Comunidade
             </Link>
             <Link href="/sobre" className="text-gray-700 hover:text-blue-600 font-medium transition">
               Sobre
+            </Link>
+            <Link href="/admin-dashboard" className="text-red-600 hover:text-red-800 font-medium transition border border-red-600 px-3 py-1 rounded">
+              Admin
             </Link>
             <Link 
               href="/login" 
@@ -81,11 +87,17 @@ export default function Navbar() {
               <Link href="/recursos" className="block px-3 py-2 text-gray-700 hover:text-blue-600">
                 Recursos IA
               </Link>
+              <Link href="/projetos" className="block px-3 py-2 text-gray-700 hover:text-blue-600">
+                Meus Projetos
+              </Link>
               <Link href="/comunidade" className="block px-3 py-2 text-gray-700 hover:text-blue-600">
                 Comunidade
               </Link>
               <Link href="/sobre" className="block px-3 py-2 text-gray-700 hover:text-blue-600">
                 Sobre
+              </Link>
+              <Link href="/admin-dashboard" className="block px-3 py-2 text-red-600 hover:text-red-800 font-medium border border-red-600 rounded mx-3 text-center">
+                Admin
               </Link>
               <Link href="/login" className="block px-3 py-2 text-blue-600 font-medium">
                 Entrar

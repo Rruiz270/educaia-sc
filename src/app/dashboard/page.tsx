@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Dashboard() {
   return (
@@ -103,7 +104,17 @@ export default function Dashboard() {
             <div className="bg-white rounded-xl shadow-lg p-6">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-xl font-bold">Meus Projetos</h3>
-                <button className="text-blue-600 hover:text-blue-800 font-medium">Ver todos</button>
+                <div className="space-x-2">
+                  <Link href="/projetos" className="text-blue-600 hover:text-blue-800 font-medium">
+                    Ver todos
+                  </Link>
+                  <Link 
+                    href="/projetos" 
+                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm"
+                  >
+                    📤 Novo Projeto
+                  </Link>
+                </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <ProjectCard 

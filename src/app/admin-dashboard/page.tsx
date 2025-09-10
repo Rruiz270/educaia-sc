@@ -35,8 +35,9 @@ export default function AdminDashboard() {
     status: '',
     modulo: ''
   })
-  const [view, setView] = useState<'grid' | 'table'>('grid')
+  const [view, setView] = useState<'grid' | 'table' | 'projetos'>('grid')
   const [selectedProf, setSelectedProf] = useState<Professor | null>(null)
+  const [projetos, setProjetos] = useState<any[]>([])
 
   useEffect(() => {
     // Carregar dados dos professores (simulação)
@@ -59,6 +60,10 @@ export default function AdminDashboard() {
     }))
     
     setProfessores(professoresCompletos)
+    
+    // Carregar projetos do localStorage
+    const projetosSalvos = JSON.parse(localStorage.getItem('projetos') || '[]')
+    setProjetos(projetosSalvos)
   }, [])
 
   const professoresFiltrados = professores.filter(prof => {
@@ -81,7 +86,9 @@ export default function AdminDashboard() {
     totalProjetos: professores.reduce((acc, p) => acc + p.projetos, 0),
     engajamento7dias: professores.filter(p => 
       new Date(p.ultimoAcesso) > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
-    ).length
+    ).length,
+    totalProjetosEnviados: projetos.length,
+    projetosAprovados: projetos.filter((p: any) => p.status === 'aprovado').length
   }
 
   const cidades = [...new Set(professores.map(p => p.cidade))]
@@ -103,7 +110,7 @@ export default function AdminDashboard() {
           </div>
 
           {/* Estatísticas Gerais */}
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-4 mb-8">
             <StatCard
               label="Total Professores"
               value={estatisticas.totalProfessores}
@@ -146,6 +153,18 @@ export default function AdminDashboard() {
               icon="🔥"
               color="red"
             />
+            <StatCard
+              label="Projetos Enviados"
+              value={estatisticas.totalProjetosEnviados}
+              icon="📤"
+              color="orange"
+            />
+            <StatCard
+              label="Projetos Aprovados"
+              value={estatisticas.projetosAprovados}
+              icon="✅"
+              color="emerald"
+            />
           </div>
 
           {/* Filtros e Controles */}
@@ -164,6 +183,12 @@ export default function AdminDashboard() {
                   className={`px-4 py-2 rounded-lg ${view === 'table' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
                 >
                   Tabela
+                </button>
+                <button
+                  onClick={() => setView('projetos')}
+                  className={`px-4 py-2 rounded-lg ${view === 'projetos' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+                >
+                  Projetos
                 </button>
               </div>
             </div>
@@ -233,6 +258,22 @@ export default function AdminDashboard() {
                     onClick={() => setSelectedProf(prof)}
                   />
                 ))}
+              </div>
+            ) : view === 'projetos' ? (
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold">Projetos Enviados pelos Professores</h3>
+                {projetos.length === 0 ? (
+                  <div className="text-center py-12">
+                    <div className="text-4xl mb-4">📁</div>
+                    <p className="text-gray-600">Nenhum projeto foi enviado ainda.</p>
+                  </div>
+                ) : (
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {projetos.map((projeto: any) => (
+                      <AdminProjetoCard key={projeto.id} projeto={projeto} />
+                    ))}
+                  </div>
+                )}
               </div>
             ) : (
               <div className="overflow-x-auto">
@@ -321,7 +362,9 @@ function StatCard({ label, value, icon, color }: {
     yellow: 'bg-yellow-100 text-yellow-800 border-yellow-200',
     indigo: 'bg-indigo-100 text-indigo-800 border-indigo-200',
     pink: 'bg-pink-100 text-pink-800 border-pink-200',
-    red: 'bg-red-100 text-red-800 border-red-200'
+    red: 'bg-red-100 text-red-800 border-red-200',
+    orange: 'bg-orange-100 text-orange-800 border-orange-200',
+    emerald: 'bg-emerald-100 text-emerald-800 border-emerald-200'
   }
 
   return (
@@ -527,6 +570,122 @@ function ProgressBar({ label, value }: { label: string; value: number }) {
           style={{ width: `${value}%` }}
         ></div>
       </div>
+    </div>
+  )
+}
+
+function AdminProjetoCard({ projeto }: { projeto: any }) {
+  const statusConfig = {
+    rascunho: { color: 'bg-gray-100 text-gray-800', label: 'Rascunho' },
+    enviado: { color: 'bg-yellow-100 text-yellow-800', label: 'Em Análise' },
+    aprovado: { color: 'bg-green-100 text-green-800', label: 'Aprovado' },
+    rejeitado: { color: 'bg-red-100 text-red-800', label: 'Rejeitado' }
+  }
+
+  const categoryIcons = {
+    automacao: '⚡',
+    chatbot: '🤖',
+    analise: '📊',
+    conteudo: '📝',
+    avaliacao: '📋',
+    gamificacao: '🎮',
+    outros: '🔧'
+  }
+
+  const avaliarProjeto = (aprovado: boolean) => {
+    const novoProjeto = {
+      ...projeto,
+      status: aprovado ? 'aprovado' : 'rejeitado',
+      nota: aprovado ? Math.floor(Math.random() * 3) + 8 : Math.floor(Math.random() * 4) + 4,
+      feedback: aprovado 
+        ? 'Excelente projeto! Demonstra domínio das ferramentas de IA e criatividade na aplicação pedagógica.'
+        : 'Projeto precisa de ajustes. Considere melhorar a documentação e adicionar mais exemplos práticos.'
+    }
+
+    // Atualizar localStorage
+    const projetos = JSON.parse(localStorage.getItem('projetos') || '[]')
+    const novosProjectos = projetos.map((p: any) => p.id === projeto.id ? novoProjeto : p)
+    localStorage.setItem('projetos', JSON.stringify(novosProjectos))
+    
+    // Recarregar página para mostrar mudanças
+    window.location.reload()
+  }
+
+  return (
+    <div className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition">
+      <div className="flex justify-between items-start mb-4">
+        <div className="flex items-center space-x-2">
+          <span className="text-2xl">{categoryIcons[projeto.categoria as keyof typeof categoryIcons] || '📁'}</span>
+          <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusConfig[projeto.status as keyof typeof statusConfig].color}`}>
+            {statusConfig[projeto.status as keyof typeof statusConfig].label}
+          </span>
+        </div>
+        {projeto.status === 'enviado' && (
+          <div className="flex space-x-2">
+            <button
+              onClick={() => avaliarProjeto(true)}
+              className="text-green-600 hover:text-green-800 text-sm px-2 py-1 border border-green-600 rounded"
+            >
+              ✓ Aprovar
+            </button>
+            <button
+              onClick={() => avaliarProjeto(false)}
+              className="text-red-600 hover:text-red-800 text-sm px-2 py-1 border border-red-600 rounded"
+            >
+              ✗ Rejeitar
+            </button>
+          </div>
+        )}
+      </div>
+
+      <h3 className="font-bold text-lg mb-2">{projeto.titulo}</h3>
+      <p className="text-gray-600 text-sm mb-4 line-clamp-2">{projeto.descricao}</p>
+
+      <div className="space-y-2 text-sm">
+        <div className="flex justify-between">
+          <span className="text-gray-500">Professor:</span>
+          <span className="font-medium">{projeto.professor}</span>
+        </div>
+        <div className="flex justify-between">
+          <span className="text-gray-500">Ferramenta:</span>
+          <span className="font-medium capitalize">{projeto.ferramenta}</span>
+        </div>
+        <div className="flex justify-between">
+          <span className="text-gray-500">Enviado em:</span>
+          <span className="font-medium">
+            {new Date(projeto.dataSubmissao).toLocaleDateString('pt-BR')}
+          </span>
+        </div>
+        {projeto.nota && (
+          <div className="flex justify-between">
+            <span className="text-gray-500">Nota:</span>
+            <span className={`font-bold ${projeto.status === 'aprovado' ? 'text-green-600' : 'text-red-600'}`}>
+              {projeto.nota}/10
+            </span>
+          </div>
+        )}
+      </div>
+
+      {projeto.feedback && (
+        <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+          <p className="text-sm text-blue-800">
+            <strong>Feedback:</strong> {projeto.feedback}
+          </p>
+        </div>
+      )}
+
+      {projeto.arquivoUrl && (
+        <div className="mt-4">
+          <a
+            href={projeto.arquivoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-sm text-blue-600 hover:text-blue-800"
+          >
+            📎 Ver arquivo anexo
+          </a>
+        </div>
+      )}
     </div>
   )
 }
