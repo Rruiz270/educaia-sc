@@ -66,7 +66,7 @@ export default function Sobre() {
             
             <div className="space-y-8">
               <TimelineItem
-                date="Janeiro 2024"
+                date="Setembro 2025"
                 title="Concepção do Projeto"
                 description="Secretaria de Educação SC identifica necessidade de capacitar professores em IA"
                 milestone="Formação da equipe multidisciplinar"
@@ -74,7 +74,7 @@ export default function Sobre() {
               />
               
               <TimelineItem
-                date="Março 2024"
+                date="Novembro 2025"
                 title="Desenvolvimento da Estrutura"
                 description="Criação do currículo, metodologia gamificada e plataforma digital"
                 milestone="Protótipo da plataforma finalizado"
@@ -82,7 +82,7 @@ export default function Sobre() {
               />
               
               <TimelineItem
-                date="Maio 2024"
+                date="Janeiro 2026"
                 title="Parcerias Estratégicas"
                 description="Negociações com Google, Microsoft e OpenAI para fornecimento de ferramentas"
                 milestone="US$ 7.5M em parcerias confirmadas"
@@ -90,7 +90,7 @@ export default function Sobre() {
               />
               
               <TimelineItem
-                date="Junho 2024"
+                date="Março 2026"
                 title="Programa Piloto"
                 description="Teste com 1.000 professores das principais cidades de SC"
                 milestone="95% de satisfação no piloto"
@@ -98,7 +98,7 @@ export default function Sobre() {
               />
               
               <TimelineItem
-                date="Agosto 2024"
+                date="Maio 2026"
                 title="Lançamento Oficial"
                 description="Abertura das inscrições para os primeiros 10.000 professores"
                 milestone="Meta: 10.000 inscritos em 3 meses"
@@ -106,7 +106,7 @@ export default function Sobre() {
               />
               
               <TimelineItem
-                date="Dezembro 2024"
+                date="Setembro 2026"
                 title="Expansão Estadual"
                 description="Alcançar todos os 51.000 professores da rede pública catarinense"
                 milestone="100% da rede estadual capacitada"
@@ -240,7 +240,7 @@ export default function Sobre() {
               <div className="bg-white rounded-2xl p-6">
                 <div className="text-4xl mb-4">🏆</div>
                 <h3 className="text-xl font-bold mb-2">Prêmio Inovação Educacional</h3>
-                <p className="text-gray-600">Congresso Brasileiro de EdTech 2024</p>
+                <p className="text-gray-600">Congresso Brasileiro de EdTech 2026</p>
               </div>
               
               <div className="bg-white rounded-2xl p-6">
